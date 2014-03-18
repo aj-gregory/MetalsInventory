@@ -1,7 +1,9 @@
 MetalsInventory::Application.routes.draw do
-  devise_for :users
+  get "inventories/index"
 
-  get "static_pages/root"
+  get "ember/start"
+
+  devise_for :users
   
   resources :inventories, :only => [:index, :create, :upddate, :destroy] do
     resources :goods, :only => [:index, :create]
@@ -9,5 +11,5 @@ MetalsInventory::Application.routes.draw do
 
   resources :goods, :only => [:update, :destroy]
   
-  root :to => "static_pages#root"
+  root :to => "ember#start"
 end
