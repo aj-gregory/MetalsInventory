@@ -5,7 +5,7 @@ MetalsInventory::Application.routes.draw do
 
   devise_for :users
   
-  resources :inventories, :only => [:index, :create, :upddate, :destroy] do
+  resources :inventories, :only => [:index, :create, :show, :upddate, :destroy] do
     resources :goods, :only => [:index, :create]
   end
 
