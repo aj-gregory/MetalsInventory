@@ -1,0 +1,1 @@
+MetalsInventory.InventoryController = Ember.ObjectController.extend();
