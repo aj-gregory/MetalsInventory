@@ -1,0 +1,1 @@
+MetalsInventory.InventoryRoute = Ember.Route.extend();

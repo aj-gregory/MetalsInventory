@@ -13,4 +13,12 @@ class InventoriesController < ApplicationController
 
     render :json => @inventory
   end
+
+  def create
+    @inventory = Inventory.new(prams[:inventory])
+    @inventory.inventory_manager_id  = current_user.id
+    @inventory.save!
+
+    render :json => @inventory
+  end
 end

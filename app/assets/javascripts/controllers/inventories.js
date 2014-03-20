@@ -1,3 +1,16 @@
-var data = $.get('inventories.json');
-MetalsInventory.InventoriesController = Ember.ArrayController.extend();
+MetalsInventory.InventoriesIndexController = Ember.ArrayController.extend({
+  actions: {
+    createInventory: function() {
+      var name = this.get('newName');
+
+      var inventory = this.store.createRecord('inventory', {
+        name: name
+      });
+
+      this.set('newName', '');
+
+      inventory.save();
+    }
+  }
+});
 
