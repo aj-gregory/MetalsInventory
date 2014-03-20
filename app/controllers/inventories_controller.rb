@@ -15,7 +15,7 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    @inventory = Inventory.new(prams[:inventory])
+    @inventory = Inventory.new(params[:inventory])
     @inventory.inventory_manager_id  = current_user.id
     @inventory.save!
 
