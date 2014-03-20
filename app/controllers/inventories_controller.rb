@@ -21,4 +21,10 @@ class InventoriesController < ApplicationController
 
     render :json => @inventory
   end
+
+  def destroy
+    @inventory = Inventory.find(params[:id])
+    @inventory.destroy
+    head :ok
+  end
 end

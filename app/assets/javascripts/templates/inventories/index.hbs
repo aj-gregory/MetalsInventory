@@ -2,7 +2,9 @@
 
 <ul>
   {{#each inventory in controller}}
-  <li>{{#link-to 'inventory' inventory}}{{inventory.name}}{{/link-to}}</li>
+    <li>
+      {{#link-to 'inventory' inventory}}{{inventory.name}}{{/link-to}}
+    </li>
   {{/each}}
 </ul>
 
