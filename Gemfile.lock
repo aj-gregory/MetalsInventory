@@ -154,7 +154,6 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 3.2.1)
   devise
-  ember-data-source (= 0.14)
   ember-rails
   ember-source (= 1.4.0)
   jquery-rails
