@@ -13,6 +13,13 @@ class GoodsController < ApplicationController
   end
 
   def create
+    inventory_id = params[:good][:inventory]
+    params[:good].delete(:inventory)
+    @good = Good.new(params[:good])
+    @good.inventory_id = inventory_id
+    @good.save!
+
+    render :json => @good
   end
 
   def destroy

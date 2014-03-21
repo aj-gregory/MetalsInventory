@@ -8,6 +8,5 @@ MetalsInventory.Good = DS.Model.extend({
   diameter: attr('string'),
   grade: attr('string'),
   gauge: attr('string'),
-  finish: attr('string'),
-  
+  finish: attr('string') 
 });

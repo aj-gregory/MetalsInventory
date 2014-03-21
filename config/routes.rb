@@ -6,10 +6,10 @@ MetalsInventory::Application.routes.draw do
   devise_for :users
   
   resources :inventories, :only => [:index, :create, :show, :upddate, :destroy] do
-    resources :goods, :only => [:index, :create]
+    resources :goods, :only => [:index]
   end
 
-  resources :goods, :only => [:update, :destroy, :show]
+  resources :goods, :only => [:update, :destroy, :show, :create]
   
   root :to => "ember#start"
 end
