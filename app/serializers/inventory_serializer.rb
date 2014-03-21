@@ -1,6 +1,6 @@
 class InventorySerializer < ActiveModel::Serializer
-  embed :ids
+  embed :ids, :include => true
 
   attributes :id, :inventory_manager_id, :name
-  has_many :goods
+  has_many :goods, :key => :goods
 end
