@@ -1,9 +1,8 @@
 class InventoriesController < ApplicationController
   respond_to :json
-  ActiveModel::Serializer.root = false
 
   def index
-    @inventories = Inventory.all
+    @inventories = Inventory.includes(:goods).all
 
     render :json => @inventories, :serializer => ActiveModel::ArraySerializer
   end

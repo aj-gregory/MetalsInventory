@@ -9,7 +9,7 @@ MetalsInventory::Application.routes.draw do
     resources :goods, :only => [:index, :create]
   end
 
-  resources :goods, :only => [:update, :destroy]
+  resources :goods, :only => [:update, :destroy, :show]
   
   root :to => "ember#start"
 end

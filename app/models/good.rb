@@ -1,5 +1,5 @@
 class Good < ActiveRecord::Base
-  attr_accessible :inventory_id, :type, :material, :guage,
+  attr_accessible :inventory_id, :type, :material, :gauge,
     :grade, :diameter, :length, :finish, :comment
 
   belongs_to :inventory

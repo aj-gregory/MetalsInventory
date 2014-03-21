@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140317212746) do
+ActiveRecord::Schema.define(:version => 20140320205156) do
 
   create_table "goods", :force => true do |t|
     t.integer  "inventory_id", :null => false
-    t.string   "type",         :null => false
+    t.string   "metal_type",   :null => false
     t.string   "material",     :null => false
     t.integer  "gauge"
     t.string   "grade"
