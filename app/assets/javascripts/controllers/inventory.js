@@ -6,5 +6,9 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
       inventory.save();
       this.transitionToRoute('inventories.index');
     }
-  }
+  },
+
+  metalTypes: ['Sheet', 'Plate', 'Tube'],
+
+  selectedType: 'Sheet'
 });

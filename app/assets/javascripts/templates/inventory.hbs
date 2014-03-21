@@ -2,10 +2,34 @@
 
 <button {{action "removeInventory"}} class="destroy">Delete</button>
 
-<br>
+<br><br>
+
+<h2>Goods</h2>
 
 {{#each good in goods}}
-  {{good.material}}
+  <div>
+    {{good.material}}
+    {{good.metal_type}}
+    {{#if good.grade}} {{good.grade}} {{/if}}
+    {{#if good.gauge}} {{good.gauge}} {{/if}}
+    {{#if good.diameter}} {{good.diameter}} {{/if}}
+    {{#if good.length}} {{good.length}} {{/if}}
+    {{#if good.finish}} {{good.finish}} {{/if}}
+    {{#if good.comment}} {{good.comment}} {{/if}}
+  </div>
 {{/each}}
 
-{{outlet}}
+<h2>Add New Good</h2>
+
+{{view Ember.Select
+  content=metalTypes
+  value=selectedType
+}}
+
+<br><br>
+
+{{partial selectedType}}
+
+<br><br>
+
+<button {{action "addGood"}}>Add</button>
