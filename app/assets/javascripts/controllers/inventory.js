@@ -19,7 +19,12 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
         comment: this.comment,
         inventory: this.get('model')
       });
-      newGood.save();
+      
+      function failure(reason) {
+        alert('Please fill in all required fields');
+      }
+
+      newGood.save().catch(failure);
     }
   },
 
