@@ -23,5 +23,9 @@ class GoodsController < ApplicationController
   end
 
   def destroy
+    @good = Good.find(params[:id])
+    @good.destroy
+
+    head :ok
   end
 end
