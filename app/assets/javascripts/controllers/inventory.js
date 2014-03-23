@@ -37,6 +37,8 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
 
     renderEditGood: function(good) {
       this.set('selectedGood', good);
+      this.set('editPartial', "edit" + good.get('metal_type'))
+      //debugger
     },
 
     editGood: function(good) {
@@ -59,5 +61,8 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
   finish: null,
   comment: null,
 
-  selectedGood: null
+  selectedGood: null,
+
+  editPartial: null
+  
 });

@@ -1,9 +1,7 @@
-{{#if selectedGood}} 
+{{#if selectedGood}}
   Material: {{input type="text" value=selectedGood.material}}
   Grade: {{input type="text" value=selectedGood.grade}}
-  {{#if selectedGood.gauge}} Gauge: {{input type="text" value=selectedGood.gauge}} {{/if}}
-  {{#if selectedGood.diameter}} Diameter: {{input type="text" value=selectedGood.diameter}} {{/if}}
-  {{#if selectedGood.length}} Length: {{input type="text" value=selectedGood.length}} {{/if}}
+  {{partial editPartial}}
   <br>
   Finish (optional): {{input type="text" value=selectedGood.finish}}
   Comment: (optional): {{input type="text" value=selectedGood.comment}}
