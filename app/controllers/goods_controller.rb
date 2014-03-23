@@ -22,6 +22,14 @@ class GoodsController < ApplicationController
     render :json => @good
   end
 
+  def update
+    @good = Good.find(params[:id])
+    params[:good].delete(:inventory)
+    @good.update_attributes!(params[:good])
+
+    render :json => @good
+  end
+
   def destroy
     @good = Good.find(params[:id])
     @good.destroy

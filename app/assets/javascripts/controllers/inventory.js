@@ -10,7 +10,6 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
     },
 
     addGood: function() {
-      debugger
       var newGood = this.store.createRecord('good', {
         metal_type: this.selectedType,
         material: this.material,
@@ -34,6 +33,18 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
       if (window.confirm('Are you sure you would like to remove this good?')) {
         good.destroyRecord();
       }
+    },
+
+    renderEditGood: function(good) {
+      this.set('selectedGood', good);
+    },
+
+    editGood: function(good) {
+      function failure(reason) {
+        alert('Please fill in all required fields');
+      }
+
+      good.save().catch(failure);
     }
   },
 
@@ -46,5 +57,7 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
   grade: null,
   diameter: null,
   finish: null,
-  comment: null
+  comment: null,
+
+  selectedGood: null
 });

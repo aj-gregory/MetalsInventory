@@ -10,15 +10,18 @@
   <div>
     Material: {{good.material}}
     Type: {{good.metal_type}}
-    {{#if good.grade}} Grade: {{good.grade}} {{/if}}
+    Grade: {{good.grade}}
     {{#if good.gauge}} Gauge: {{good.gauge}} {{/if}}
     {{#if good.diameter}} Diameter: {{good.diameter}} {{/if}}
     {{#if good.length}} Length: {{good.length}} {{/if}}
     {{#if good.finish}} Finish: {{good.finish}} {{/if}}
     {{#if good.comment}} Comment: {{good.comment}} {{/if}}
     <button {{action "removeGood" good}} class="destroy">Delete</button>
+    <button {{action "renderEditGood" good}}>Edit</button>
   </div>
 {{/each}}
+
+{{partial "editGood"}}
 
 <h2>Add New Good</h2>
 
