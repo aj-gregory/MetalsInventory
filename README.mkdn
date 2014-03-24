@@ -7,8 +7,8 @@ To Run
 From the project directory, run rake db:setup and start the rails server.
 
 Demo account:
-  email: demo@demo.demo
-  password: password
+- email: demo@demo.demo
+- password: password
 
 
 Notes
