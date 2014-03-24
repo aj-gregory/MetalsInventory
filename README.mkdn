@@ -4,7 +4,7 @@ Metals Inventory
 To Run
 ------
 
-From the project directory, run rake db:setup and start the rails server.
+From the project directory, run rake db:setup, bundle install, and start the rails server.
 
 Demo account:
 - email: demo@demo.demo
