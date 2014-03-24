@@ -1,8 +1,9 @@
 class InventoriesController < ApplicationController
   respond_to :json
+  before_filter :authenticate_user!
 
   def index
-    @inventories = Inventory.includes(:goods).all
+    @inventories = Inventory.includes(:goods).where(:inventory_manager_id => current_user.id)
 
     render :json => @inventories, :serializer => ActiveModel::ArraySerializer
   end

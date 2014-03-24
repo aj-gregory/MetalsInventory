@@ -1,4 +1,5 @@
 class GoodsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @goods = Good.where(:inventory_id => params[:inventory_id])
