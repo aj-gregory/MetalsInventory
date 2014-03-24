@@ -6,20 +6,36 @@
 
 <h2>Goods</h2>
 
-{{#each good in goods}}
-  <div>
-    Material: {{good.material}}
-    Type: {{good.metal_type}}
-    Grade: {{good.grade}}
-    {{#if good.gauge}} Gauge: {{good.gauge}} {{/if}}
-    {{#if good.diameter}} Diameter: {{good.diameter}} {{/if}}
-    {{#if good.length}} Length: {{good.length}} {{/if}}
-    {{#if good.finish}} Finish: {{good.finish}} {{/if}}
-    {{#if good.comment}} Comment: {{good.comment}} {{/if}}
-    <button {{action "removeGood" good}} class="destroy">Delete</button>
-    <button {{action "renderEditGood" good}}>Edit</button>
-  </div>
-{{/each}}
+<table border='1'>
+  <tr>
+    <th>Material</th>
+    <th>Type</th>
+    <th>Grade</th>
+    <th>Gauge</th>
+    <th>Diameter</th>
+    <th>Length</th>
+    <th>Finish</th>
+    <th>Comment</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  {{#each good in goods}}
+    <tr>
+      <th>{{good.material}}</th>
+      <th>{{good.metal_type}}</th>
+      <th>{{good.grade}}</th>
+      <th>{{#if good.gauge}} {{good.gauge}} {{/if}}</th>
+      <th>{{#if good.diameter}} {{good.diameter}} {{/if}}</th>
+      <th>{{#if good.length}} {{good.length}} {{/if}}</th>
+      <th>{{#if good.finish}} {{good.finish}} {{/if}}</th>
+      <th>{{#if good.comment}} {{good.comment}} {{/if}}</th>
+      <th><button {{action "renderEditGood" good}}>Edit</button></th>
+      <th><button {{action "removeGood" good}} class="destroy">Delete</button></th>
+    </tr>
+    
+  {{/each}}
+</table>
 
 {{partial "editGood"}}
 
