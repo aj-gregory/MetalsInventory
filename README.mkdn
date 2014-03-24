@@ -1,0 +1,17 @@
+Metals Inventory
+================
+
+To Run
+------
+
+From the project directory, run rake db:setup and start the rails server.
+
+
+Notes
+-----
+
+To do:
+- Finish auth
+- Sortable by attribute
+- Write tests
+- Search inventory
