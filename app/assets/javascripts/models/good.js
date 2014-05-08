@@ -9,5 +9,14 @@ MetalsInventory.Good = DS.Model.extend({
   grade: attr('string'),
   gauge: attr('string'),
   finish: attr('string'),
-  comment: attr('string') 
+  comment: attr('string'),
+  elementId: function() {
+    return ('good-' + this.get('id'));
+  }.property('id'),
+  editId: function() {
+    return ('edit-good-' + this.get('id'));
+  }.property('id'),
+  deleteId: function() {
+    return ('delete-good-' + this.get('id'));
+  }.property('id')
 });

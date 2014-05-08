@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 //= require application.js.coffee
-window.MetalsInventory = Ember.Application.create()
+window.MetalsInventory = Ember.Application.create();
+
 

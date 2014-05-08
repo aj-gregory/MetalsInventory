@@ -1,9 +1,9 @@
 {{#if selectedGood}}
-  Material: {{input type="text" value=selectedGood.material}}
+  Material: {{input type="text" value=selectedGood.material id='edit-material'}}
   Grade: {{input type="text" value=selectedGood.grade}}
   {{partial editPartial}}
   <br>
   Finish (optional): {{input type="text" value=selectedGood.finish}}
   Comment: (optional): {{input type="text" value=selectedGood.comment}}
-  <button {{action "editGood" selectedGood}}>Save</button>
+  <button {{action "editGood" selectedGood}} id='save-edit'>Save</button>
 {{/if}}
