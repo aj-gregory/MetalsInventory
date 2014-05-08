@@ -21,8 +21,8 @@
   </tr>
 
   {{#each good in goods}}
-    <tr>
-      <th>{{good.material}}</th>
+    <tr {{bind-attr id='good.elementId'}}>
+      <th class='material-cell'>{{good.material}}</th>
       <th>{{good.metal_type}}</th>
       <th>{{good.grade}}</th>
       <th>{{#if good.gauge}} {{good.gauge}} {{/if}}</th>
@@ -30,8 +30,8 @@
       <th>{{#if good.length}} {{good.length}} {{/if}}</th>
       <th>{{#if good.finish}} {{good.finish}} {{/if}}</th>
       <th>{{#if good.comment}} {{good.comment}} {{/if}}</th>
-      <th><button {{action "renderEditGood" good}}>Edit</button></th>
-      <th><button {{action "removeGood" good}} class="destroy">Delete</button></th>
+      <th><button {{bind-attr id='good.editId'}} {{action "renderEditGood" good}}>Edit</button></th>
+      <th><button {{bind-attr id='good.deleteId'}} {{action "removeGood" good}} class="destroy">Delete</button></th>
     </tr>
     
   {{/each}}
@@ -44,6 +44,7 @@
 {{view Ember.Select
   content=metalTypes
   value=selectedType
+  id='metal-type-input'
 }}
 
 <br><br>
@@ -52,4 +53,4 @@
 
 <br><br>
 
-<button {{action "addGood"}}>Add</button>
+<button id='add-good' {{action "addGood"}}>Add</button>

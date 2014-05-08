@@ -1,13 +1,16 @@
 <h1>My Inventories</h1>
 
-<ul>
+<ul id='inventories-list'>
   {{#each inventory in controller}}
     <li>
-      {{#link-to 'inventory' inventory}}{{inventory.name}}{{/link-to}}
+      {{#link-to 'inventory' inventory id=inventory.elementId}}{{inventory.name}}{{/link-to}}
     </li>
   {{/each}}
 </ul>
 
+<form>
 {{input type="text" id="new-inventory" placeholder="Add an inventory"
-  value=newName action="createInventory"}}
+  value=newName}}
 
+<button id="add-inventory-button" {{action "createInventory"}}>Add</button>
+</form>
