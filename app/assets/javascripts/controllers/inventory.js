@@ -1,12 +1,10 @@
 MetalsInventory.InventoryController = Ember.ObjectController.extend({
   actions: {
     removeInventory: function() {
-      if (window.confirm('Are you sure you want to remove this inventory?')){
-        var inventory = this.get('model');
-        inventory.deleteRecord();
-        inventory.save();
-        this.transitionToRoute('inventories.index');
-      }
+      var inventory = this.get('model');
+      inventory.deleteRecord();
+      inventory.save();
+      this.transitionToRoute('inventories.index');
     },
 
     addGood: function() {
@@ -30,9 +28,7 @@ MetalsInventory.InventoryController = Ember.ObjectController.extend({
     },
 
     removeGood: function(good) {
-      if (window.confirm('Are you sure you would like to remove this good?')) {
-        good.destroyRecord();
-      }
+      good.destroyRecord();
     },
 
     renderEditGood: function(good) {

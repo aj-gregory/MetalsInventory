@@ -144,24 +144,42 @@ test("Can edit a good from inventory page", function() {
 
 });
 
-// test("Page redirects to index on delete", function() {
+test("Page redirects to index on inventory delete", function() {
 
-// 	visit("/inventories/2");
-//   click('button.destroy').then(function() {
-//     equal(currentURL(), '/inventories');
-//   });
+	visit("/inventories/2");
+  click('button.destroy').then(function() {
+    equal(currentURL(), '/inventories');
+  });
  
-// });
+});
 
-// test("Can add good of type 'tube'", function() {
+test("Can delete goods", function() {
+  expect(2);
   
-//   visit("/inventories/1");
+  visit("/inventories/1");
 
-//   click('#metal-type-input');
-//   click('#metal-type-input option:last');
+  fillIn('#material-input', 'Steel');
+  fillIn('#grade-input', '2');
+  fillIn('#gauge-input', '3');
 
-//   andThen(function() {
-//     ok(exists('#length-input'));
-//   });
+  click('#add-good').then(function() {
+    ok(exists('tr#good-fixture-3'), "Good added");
+  });
 
-// });
+  click('#delete-good-fixture-3').then(function() {
+    ok(! exists('tr#good-fixture-3'), "Good deleted");
+  });
+
+});
+
+test("Can add good of type 'tube'", function() {
+  
+  visit("/inventories/1").then(function() {
+    $('#metal-type-input').val('Tube');
+  });
+
+  andThen(function() {
+    ok(exists('#length-input'));
+  });
+
+});
