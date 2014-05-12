@@ -3,7 +3,7 @@
 //= require_self
  
 document.write('<div id="ember-testing-container"><div id="ember-testing"></div></div>');
-document.write('<style>#ember-testing-container { position: absolute; background: white; bottom: 0; right: 0; width: 640px; height: 384px; overflow: auto; z-index: 9999; border: 1px solid #ccc; } #ember-testing { zoom: 50%; }</style>');
+// document.write('<style>#ember-testing-container { position: absolute; background: white; bottom: 0; right: 0; width: 640px; height: 384px; overflow: auto; z-index: 9999; border: 1px solid #ccc; } #ember-testing { zoom: 50%; }</style>');
  
 MetalsInventory.rootElement = '#ember-testing';
 MetalsInventory.setupForTesting();
@@ -26,6 +26,12 @@ function exists(selector) {
   return !!find(selector).length;
 }
 
+var newestFixture = -1;
+
+function newestGoodSelector() {
+  return ('tr#good-fixture-' + newestFixture);
+}
+
 // test('Inventory Properties', function() {
 // 	expect(1);
 // 	debugger
@@ -36,8 +42,12 @@ function exists(selector) {
 //    equal(testInv.get('inventory_manager_id'), '1')
 
 // });
-
-module("UI Unit Tests");
+ 
+module("UI Unit Tests", {
+  teardown: function() {
+    MetalsInventory.reset();
+  }
+});
  
 test("Check HTML is returned", function() {
  
@@ -72,7 +82,11 @@ test("Inventories page contains inventories list UL", function() {
 });
 
 
-module("UI Integration Tests")
+module("UI Integration Tests", {
+  setup: function() {
+    MetalsInventory.Good.FIXTURES = [];
+  }
+});
 
 test("Home page links to inventories page", function() {
 
@@ -89,6 +103,7 @@ test("Inventories can be added", function() {
 
   fillIn('#new-inventory', 'NewTestInventory');
   click('#add-inventory-button').then(function() {
+    newestFixture++;
     ok(exists('#NewTestInventory-link'));
   });
 
@@ -105,6 +120,15 @@ test("Inventories index links to specific inventory", function() {
   }); 
 });
 
+test("Page redirects to index on inventory delete", function() {
+
+  visit("/inventories/2");
+  click('button.destroy').then(function() {
+    equal(currentURL(), '/inventories');
+  });
+ 
+});
+
 test("Can add good from inventory page", function() {
   
   visit("/inventories/1");
@@ -114,7 +138,8 @@ test("Can add good from inventory page", function() {
   fillIn('#gauge-input', '3');
 
   click('#add-good').then(function() {
-    ok(exists('tr#good-fixture-1'));
+    newestFixture++;
+    ok(exists(newestGoodSelector()));
   });
 
 });
@@ -129,28 +154,20 @@ test("Can edit a good from inventory page", function() {
   fillIn('#gauge-input', '3');
 
   click('#add-good').then(function() {
-    ok(exists('tr#good-fixture-2'), 'new good added');
-  });
-
-  click('#edit-good-fixture-2').then(function() {
-    ok(exists('#edit-material'), 'edit button renders edit fields');
+    newestFixture++;
+    ok(exists(newestGoodSelector()), 'new good added');
+  }).then(function() {
+    click('#edit-good-fixture-' + newestFixture).then(function() {
+      ok(exists('#edit-material'), 'edit button renders edit fields');
+    });
   });
 
   fillIn('#edit-material', 'Copper');
 
   click('#save-edit').then(function(){
-    equal(find('tr#good-fixture-2 .material-cell').text(), 'Copper', 'good updated');
+    equal(find(newestGoodSelector() + ' .material-cell').text(), 'Copper', 'good updated');
   });
 
-});
-
-test("Page redirects to index on inventory delete", function() {
-
-	visit("/inventories/2");
-  click('button.destroy').then(function() {
-    equal(currentURL(), '/inventories');
-  });
- 
 });
 
 test("Can delete goods", function() {
@@ -163,23 +180,24 @@ test("Can delete goods", function() {
   fillIn('#gauge-input', '3');
 
   click('#add-good').then(function() {
-    ok(exists('tr#good-fixture-3'), "Good added");
-  });
-
-  click('#delete-good-fixture-3').then(function() {
-    ok(! exists('tr#good-fixture-3'), "Good deleted");
+    newestFixture++;
+    ok(exists(newestGoodSelector()), "Good added");
+  }).then(function() {
+    click('#delete-good-fixture-' + newestFixture).then(function() {
+      ok(! exists(newestGoodSelector()), "Good deleted");
+    });
   });
 
 });
 
-test("Can add good of type 'tube'", function() {
+// test("Can add good of type 'tube'", function() {
   
-  visit("/inventories/1").then(function() {
-    $('#metal-type-input').val('Tube');
-  });
+//   visit("/inventories/1").then(function() {
+//     $('#metal-type-input').val('Tube');
+//   });
 
-  andThen(function() {
-    ok(exists('#length-input'));
-  });
+//   andThen(function() {
+//     ok(exists('#length-input'));
+//   });
 
-});
+// });
